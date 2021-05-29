@@ -1,7 +1,6 @@
 MyApp.controller('PainelController', function ($scope, $state, $http, $localStorage, $location,) {
 	
 	$scope.iniciar = function () {
-		$location.path('/painel/home');
 	}
 	
 	$scope.AlterarMenu = function() {
