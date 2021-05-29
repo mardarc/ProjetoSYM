@@ -11,7 +11,7 @@ namespace GrupoSYM.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public string ID { get; set; }
+        public int ID { get; set; }
 
         [Required]
         [Column(TypeName = "varchar(100)")]
