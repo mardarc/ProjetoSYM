@@ -14,6 +14,5 @@ namespace GrupoSYM.Entities
         }
         public DbSet<Medico> Medicos { get; set; }
         public DbSet<Consultorio> Consultorios { get; set; }
-
     }
 }

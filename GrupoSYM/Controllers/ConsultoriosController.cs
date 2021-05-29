@@ -64,7 +64,7 @@ namespace GrupoSYM.Controllers
         {
             var cons = _symContext.Consultorios.Find(id);
 
-            if (cons == null) { return NotFound("Atividade inexistente"); }
+            if (cons == null) { return NotFound("Consultório inexistente"); }
 
             _symContext.Remove(cons);
             _symContext.SaveChanges();
