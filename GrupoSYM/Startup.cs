@@ -1,4 +1,7 @@
 using GrupoSYM.Entities;
+using GrupoSYM.Interfaces;
+using GrupoSYM.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -7,8 +10,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using MySqlConnector;
 using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace GrupoSYM
 {
@@ -26,14 +32,11 @@ namespace GrupoSYM
         {
             var connection = Configuration["ConexaoMySql:DefaultConnection"];
             services.AddDbContext<SymContext>(options => options.UseMySql(connection, new MySqlServerVersion(new Version(8, 0, 11))));
+            services.AddScoped<IMedicoService, MedicoRepository>();
+            services.AddHttpContextAccessor();
             services.AddMvc();
-            services.AddControllersWithViews();
-            // In production, the Angular files will be served from this directory
-            services.AddSpaStaticFiles(configuration =>
-            {
-                configuration.RootPath = "ClientApp/dist";
-            });
-
+            services.AddSwaggerGen();
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,15 +52,14 @@ namespace GrupoSYM
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
-            app.UseHttpsRedirection();
+            app.UseSwaggerUI(c => {
+                c.SwaggerEndpoint("/v1/swagger/v1/swagger.json", "API V1");
+            });
             app.UseStaticFiles();
-            app.UseCookiePolicy();
-            if (!env.IsDevelopment())
-            {
-                app.UseSpaStaticFiles();
-            }
             
+            app.UseAuthentication();
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+
             //app.UseMvc(routes =>
             //{
             //    routes.MapRoute(
@@ -85,6 +87,10 @@ namespace GrupoSYM
                 {
                     spa.UseAngularCliServer(npmScript: "start");
                 }
+            });//app.UseHttpsRedirection();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
             });
         }
     }

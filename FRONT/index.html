@@ -4,7 +4,6 @@
     <!-- Meta tags ObrigatĂ³rias -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="https://enviodocumentos.fip-moc.edu.br/Content/img/favicon.ico" type="image/x-icon" />
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />  
     <meta http-equiv="Pragma" content="no-cache" />  
     <meta http-equiv="Expires" content="0" /> 
@@ -82,7 +81,9 @@
         $(function () {
           $('[data-toggle="tooltip"]').tooltip();
           //CKEDITOR.replace('texto-curso');
-      })
+        })
+
+        $(".phone").inputmask({"mask": "(99) 9?9999-9999"});
   </script>
 </body>
 </html>
