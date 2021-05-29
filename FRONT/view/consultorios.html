@@ -6,7 +6,7 @@
 					<div class="card-header" id="headingOne">
 						<h5 class="mb-0">
 							<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-								<i class="fa fa-plus mr-2"></i>Cadastrar Médico
+								<i class="fa fa-plus mr-2"></i>Cadastrar Consultório
 							</button>
 						</h5>
 					</div>
@@ -16,39 +16,30 @@
 							<form>
 								<div class="container">
 									<div class="row">
-										<div class="col-4">
-											<div class="form-group">
-												<label for="inputCRM">CRM</label>
-												<input type="text" class="form-control" id="inputCRM">
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-6">
+										<div class="col-9 col-sm-12">
 											<div class="form-group">
 												<label for="inputNome">Nome Completo</label>
-												<input type="text" class="form-control" id="inputNome">
+												<input type="text" maxlength="100" class="form-control" id="inputNome">
 											</div>
 										</div>
-										<div class="col-3">
+										<div class="col-3 col-sm-12">
 											<div class="form-group">
 												<label for="inputTelefone">Telefone</label>
 												<input type="text" class="form-control" maxlength="20" id="inputTelefone">
 											</div>
 										</div>
-										<div class="col-3">
+										<div class="col-12">
 											<div class="form-group">
-												<label for="inputValorConsulta">Valor da Consulta</label>
-												<input type="number" step="0,01" class="form-control" id="inputValorConsulta">
+												<label for="inputEndereco">Endereço</label>
+												<input type="text" maxlength="200" class="form-control" id="inputEndereco">
 											</div>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col">
-											<button type="button" class="btn btn-primary w-100" ng-click="Salvar()">Cadastrar</button>
+											<button type="button" class="btn btn-dark w-100" ng-click="Salvar()">Cadastrar</button>
 										</div>
 									</div>
-										
 								</div>
 							</form>
 						</div>
@@ -63,25 +54,23 @@
 		<div class="col">
 			<div class="card shadow">
 				<div class="card-header">
-					<h3>Médicos Cadastrados</h3>
+					<h3>Consultórios Cadastrados</h3>
 				</div>
 				<div class="card-body">
 					<table class="table table-sm" ng-table="tableParams">
 						<thead>
 							<tr>
-								<th scope="col">CRM</th>
-								<th scope="col">Nome</th>
-								<th scope="col">Telefone</th>
-								<th scope="col">Valor de Consulta</th>
-								<th scope="col">Ações</th>
+								<th scope="col" width="30%">Nome</th>
+								<th scope="col" width="10%">Telefone</th>
+								<th scope="col" width="50%">Endereço</th>
+								<th scope="col" width="10%">Ações</th>
 							</tr>
 						</thead>
-						<tbody id="dt-medicos" style="display: none;">
-          					<tr dir-paginate="medico in Medicos | itemsPerPage:10">
-            					<th scope="row">{{medico.crm}}</th>
-								<td>{{medico.nome}}</td>
+						<tbody id="dt-consultorios" style="display: none;">
+          					<tr dir-paginate="consultorio in Consultorios | itemsPerPage:10">
+            					<th scope="row">{{consultorio.nome}}</th>
 								<td>{{medico.telefone}}</td>
-								<td>R$ {{medico.valorConsulta}}</td>
+								<td>R$ {{medico.endereco}}</td>
 								<td>
 									<div class="btn-group" role="group" aria-label="Basic example">
 										<button class="btn btn-info" ng-click="Editar(medico)">Editar</button>
@@ -92,7 +81,6 @@
             					</td>
           					</tr>
         				</tbody>
-
 					</table>
 				</div>
 			</div>
@@ -100,17 +88,17 @@
 	</div>
 </div>
 
-<div class="modal fade" tabindex="-1" role="dialog" id="modal-medicos">
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-consultorios">
 	<div class="modal-dialog" role="document">
 	  	<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="modal-medicos-title">Cadastrar Médico</h5>
+				<h3 class="modal-title" id="modal-consultorios-title">Cadastrar Médico</h3>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="iniciar()">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<p id="modal-medicos-text"></p>
+				<p id="modal-consultorios-text"></p>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="iniciar()">Close</button>
