@@ -2,14 +2,16 @@
 using GrupoSYM.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GrupoSYM.Migrations
 {
     [DbContext(typeof(SymContext))]
-    partial class SymContextModelSnapshot : ModelSnapshot
+    [Migration("20210529190450_createConsultorio")]
+    partial class createConsultorio
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -18,9 +20,9 @@ namespace GrupoSYM.Migrations
 
             modelBuilder.Entity("GrupoSYM.Models.Consultorio", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<string>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Endereco")
                         .IsRequired()

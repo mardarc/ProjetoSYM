@@ -35,6 +35,16 @@ MyApp.config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvide
 			}
 		}
 	})
+	.state('consultorios', {
+		parent: 'painel',
+		url: "/consultorios",
+		views: {
+			"sistema": {
+				controller: 'ConsultoriosController',
+				templateUrl: "view/consultorios.html"
+			}
+		}
+	})
 }]);
 
 MyApp.run(run);

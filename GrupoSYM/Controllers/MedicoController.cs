@@ -70,7 +70,7 @@ namespace GrupoSYM.Controllers
         {
             var med = _symContext.Medicos.Find(crm);
 
-            if (med == null) { return NotFound("Atividade inexistente"); }
+            if (med == null) { return NotFound("Médico inexistente"); }
 
             _symContext.Remove(med);
             _symContext.SaveChanges();
