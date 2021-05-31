@@ -25,5 +25,6 @@ namespace GrupoSYM.Models
         [Column(TypeName = "varchar(200)")]
         public string Endereco { get; set; }
 
+        public virtual ICollection<MedicoConsultorio> MedicoConsultorios { get; set; }
     }
 }

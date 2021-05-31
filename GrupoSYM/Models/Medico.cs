@@ -10,6 +10,8 @@ namespace GrupoSYM.Models
     public class Medico
     {
         [Key]
+        public int Id { get; set; }
+
         [Column(TypeName = "varchar(10)")]
         public string CRM { get; set; }
 
@@ -24,5 +26,7 @@ namespace GrupoSYM.Models
         [Required]
         [Column(TypeName = "decimal(10,2)")]
         public decimal ValorConsulta { get; set; }
+
+        public virtual ICollection<MedicoConsultorio> MedicosConsultorio { get; set; }
     }
 }
